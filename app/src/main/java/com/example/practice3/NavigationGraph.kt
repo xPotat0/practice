@@ -8,14 +8,16 @@ import androidx.navigation.compose.composable
 @Composable
 fun NavigationGraph(navController: NavHostController, onBottomBarVisibilityChanged: (Boolean) -> Unit) {
     NavHost(navController, startDestination = Routes.Welcome.route) {
-        composable(Routes.Welcome.route) {
-            onBottomBarVisibilityChanged(false)
-            Welcome(navController = navController)
-        }
 
-        composable(BottomNavigationItems.Screen1.route) {
+        composable(BottomNavigationItems.ScreenBookList.route) {
             onBottomBarVisibilityChanged(true)
-            Screen1()
+            ScreenBookList{ bookId -> navController.navigate("book_detail/${bookId}") }
+        }
+        composable(BottomNavigationItems.ScreenBookItem.route) {
+            backStackEntry ->
+            val bookId = backStackEntry.arguments?.getString("bookId")?.toInt() ?: 1
+            onBottomBarVisibilityChanged(false)
+            ScreenBookItem(bookId, navController)
         }
         composable(BottomNavigationItems.Screen2.route) {
             onBottomBarVisibilityChanged(true)

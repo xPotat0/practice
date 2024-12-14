@@ -14,6 +14,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.practice3.ui.theme.Practice3Theme
@@ -22,27 +24,32 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Practice3Theme {
-                val navController: NavHostController = rememberNavController()
-                var buttonsVisible by remember { mutableStateOf(true) }
+            MainScreen()
+        }
+    }
+}
 
-                Scaffold (
-                    bottomBar = {
-                        if (buttonsVisible) {
-                            BottomBar(
-                                navController = navController,
-                                state = buttonsVisible,
-                                modifier = Modifier
-                            )
-                        }
-                    }) { paddingValues ->
-                    Box(
-                        modifier = Modifier.padding(paddingValues)
-                    ) {
-                        NavigationGraph(navController = navController) {
-                            isVisible -> buttonsVisible = isVisible
-                        }
-                    }
+@Composable
+fun MainScreen() {
+    Practice3Theme {
+        val navController: NavHostController = rememberNavController()
+        var buttonsVisible by remember { mutableStateOf("books") }
+
+        Scaffold (
+            bottomBar = {
+                if (buttonsVisible == "books") {
+                    BottomBar(
+                        navController = navController,
+                        state = true,
+                        modifier = Modifier
+                    )
+                }
+            }) { paddingValues ->
+            Box(
+                modifier = Modifier.padding(paddingValues)
+            ) {
+                NavigationGraph(navController = navController) {
+                        isVisible -> buttonsVisible = "books"
                 }
             }
         }
