@@ -20,7 +20,7 @@ fun BottomBar(
     modifier: Modifier = Modifier
 ) {
     val screens = listOf(
-        BottomNavigationItems.Screen1,
+        BottomNavigationItems.ScreenBookList,
         BottomNavigationItems.Screen2,
         BottomNavigationItems.Screen3
     )

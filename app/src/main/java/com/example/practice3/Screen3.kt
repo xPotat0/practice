@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
+import com.example.practice3.ViewModel.BookModel
 
 @Composable
 fun Screen3() {

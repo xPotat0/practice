@@ -11,9 +11,15 @@ sealed class BottomNavigationItems (
     val title: String? = null,
     val icon: ImageVector? = null
 ) {
-    object Screen1 : BottomNavigationItems(
-        route = "Screen1",
-        title = "Screen1",
+    object ScreenBookList : BottomNavigationItems(
+        route = "ScreenBookList",
+        title = "ScreenBookList",
+        icon = Icons.Outlined.Home
+    )
+
+    object ScreenBookItem : BottomNavigationItems(
+        route = "book_detail/{bookId}",
+        title = "book_detail/{bookId}",
         icon = Icons.Outlined.Home
     )
 
